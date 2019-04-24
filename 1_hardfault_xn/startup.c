@@ -41,7 +41,8 @@ void reset_handler(void)
 	blink_count(LED_BLUE, 20);
 
 	// execute from 0x40000000
-	??????
+	//SET_BIT(40000000, 4);
+	((void(*)(void))0x40000000)();
 
 	blink(LED_BLUE);
 }

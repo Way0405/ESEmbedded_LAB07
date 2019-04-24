@@ -1,10 +1,13 @@
 #ifndef REG_H
 #define REG_H
 
+
+
+
 //REG OPERATIONS
 #define UINT32_1 ((uint32_t)1)
 
-#define REG(addr) (*((volatile uint32_t *)(addr)))
+#define REG(addr)  (*(((volatile uint32_t *)(addr)))
 
 #define CLEAR_MASK(highest_bit, lowest_bit) (((highest_bit) - (lowest_bit)) >= 31 ? (uint32_t)0xFFFFFFFF : ~(((UINT32_1 << ((highest_bit) - (lowest_bit) + 1)) - 1) << (lowest_bit)))
 #define WRITE_BITS(addr, highest_bit, lowest_bit, data) (REG(addr) = (REG(addr) & CLEAR_MASK(highest_bit, lowest_bit)) | ((uint32_t)(data) << (lowest_bit)))
